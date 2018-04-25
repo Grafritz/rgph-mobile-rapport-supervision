@@ -1,0 +1,7 @@
+[
+  {"persId":"201", "sdeId":"111-90-001-506", "nom":"Developpeur", "prenom":"Jean Fritz", "sexe":"M", "nomUtilisateur":"Developpeur", "motDePasse":"passpass", "email":"duverseau.jeanfritz@gmail.com", "deptId":"01", "comId":"0111", "vqseId":"0111-90", "zone":"1", "codeDistrict":"506", "estActif":true, "ProfileId":99},
+  {"persId":"202", "sdeId":"111-90-001-506", "nom":"IHSI", "prenom":"Superviseur", "sexe":"F", "nomUtilisateur":"sup", "motDePasse":"passpass", "email":"Admin@gmail.com", "deptId":"01", "comId":"0111", "vqseId":"0111-90", "zone":"1", "codeDistrict":"506", "estActif":true, "ProfileId":7},
+  {"persId":"203", "sdeId":"111-90-001-506", "nom":"IHSI", "prenom":"Agent 1", "sexe":"M", "nomUtilisateur":"agent", "motDePasse":"passpass", "email":"agent@gmail.com", "deptId":"01", "comId":"0111", "vqseId":"0111-90", "zone":"1", "codeDistrict":"506", "estActif":true, "ProfileId":8},
+  {"persId":"204", "sdeId":"111-90-001-506", "nom":"IHSI", "prenom":"Agent 2", "sexe":"M", "nomUtilisateur":"agent2", "motDePasse":"passpass", "email":"agent@gmail.com", "deptId":"01", "comId":"0111", "vqseId":"0111-90", "zone":"2", "codeDistrict":"506", "estActif":true, "ProfileId":8},
+  {"persId":"205", "sdeId":"111-90-001-506", "nom":"IHSI", "prenom":"ASTIC", "sexe":"M", "nomUtilisateur":"astic", "motDePasse":"passpass", "email":"Admin@gmail.com", "deptId":"01", "comId":"0111", "vqseId":"0111-90", "zone":"2", "codeDistrict":"506", "estActif":true, "ProfileId":9}
+]

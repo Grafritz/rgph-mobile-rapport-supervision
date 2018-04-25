@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rgph-mobile-rapport-supervision.iml" filepath="$PROJECT_DIR$/rgph-mobile-rapport-supervision.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rgph-rapport-supervision-dao-generator/rgph-rapport-supervision-dao-generator.iml" filepath="$PROJECT_DIR$/rgph-rapport-supervision-dao-generator/rgph-rapport-supervision-dao-generator.iml" />
+    </modules>
+  </component>
+</project>

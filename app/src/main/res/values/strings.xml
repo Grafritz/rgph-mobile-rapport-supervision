@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name"><![CDATA[IHSI - Rapport de Supervision]]></string>
+    <string name="label_app_name"><![CDATA[Rapport de Supervision]]></string>
+    <string name="label_NomInstitution">Institut Haitien de Statistique et d\'Informatique</string>
+    <string name="label_SigleIHSI">IHSI</string>
+
+
+    <string name="search_hint">Recherche</string>
+
+    <string name="msg_title_succesInformation">.:: Informations ::.</string>
+    <string name="msg_title_erreurInformation">.:: Attention ::.</string>
+
+    <string name="msg_TitreAccueil_CR">Enstiti Ayisyen Estatistik ak Enfòmatik</string>
+    <string name="msg_SousTitreAccueil_FR">Recencement Général de la Population et de l\'habitat</string>
+    <string name="msg_SousTitreAccueil_CR">Ve Resansman Jeneral Popilasyon ak Abita \n (RGPH)</string>
+
+
+    <string name="label_SaveAndQuit">Anregistre epi Kite</string>
+    <string name="label_QuitNotSave">Kite san Anregistre</string>
+    <string name="label_Quit">Quitter</string>
+    <string name="msg_QuitterQuestionnaire">Eskew vle kite vre? \n Nou konseyew anregistre anvan ou kite.</string>
+    <string name="label_WI">Oui</string>
+    <string name="msg_Inactif">Inactif</string>
+    <string name="title_activity_login">Connexion</string>
+
+    <!-- Strings related to login -->
+
+    <string name="label_Incorrect">Incorrect</string>
+    <string name="msg_WaitAMinit">Patienter un moment...</string>
+    <string name="label_CompteUtilisateur">Compte Utilisateur</string>
+    <string name="label_MotDePasse">Mot de Passe</string>
+    <string name="action_Connecter">Connecter</string>
+    <string name="label_Deconnecter">Déconnecter</string>
+    <string name="msg_MotDePasse_Obligatoire">Ou dwe antre kòd sekrè ou a</string>
+    <string name="msg_Username_Obligatoire">Ou dwe antre yon kont itilizatè</string>
+    <string name="msg_MotDePasse_TropCourt">Kòd sekrè ou antre a trò kout</string>
+    <string name="msg_UserName_ou_MotDePasse_Incorrect">Kont itilizatè oubyen Kòd sekrè ou antre a bon.</string>
+
+    <string name="msg_Developpeur">IHSI 2017 | Développer par: Jean Fritz DUVERSEAU</string>
+
+
+    <string name="label_Oui">Oui</string>
+    <string name="label_Non">Non</string>
+    <string name="msg_title_Attention">Attention</string>
+    <string name="msg_title_Information">Informations</string>
+    <string name="msg_DefinitionFormulaire"><i>Définir le type de formulaire pour l\'agent</i></string>
+    <string name="msg_ListeFormulaireExercices">Voir la liste des Exercices</string>
+    <string name="label_Modifier">Modifier</string>
+    <string name="msg_TypeFormulaire_Obligatoire">Type formulaire Obligatoire</string>
+    <string name="msg_Configuration_SDE">Configuration SDE</string>
+    <string name="label_NoBatiment">No.</string>
+    <string name="label_Configurer">Configurer pour l\'appareil</string>
+    <string name="label_RefreshList">Rafraichir</string>
+    <string name="label_list_menu_module_menu">Afficher les </string>
+    <string name="label_Tous_Les_SDE">Afficher tous les SDE</string>
+    <string name="label_Afficher_SDE_ParFormulaire">Afficher SDE</string>
+    <string name="label_PauseGPS">Pause</string>
+    <string name="label_ResumeGPS">Capter les coordonnées GPS</string>
+    <string name="msg_Coordonnee_Update">Coordonnées GPS Modifiée..</string>
+    <string name="label_Annuler">Annuler</string>
+    <string name="label_OpenSettings">Ouvrir Paramètres</string>
+    <string name="msg_ActiverLeGPS">Activer le GPS pour utiliser le service de Localisation!</string>
+    <string name="msg_GPSNotAvailable">Le service de localisation n\'est pas Activé...</string>
+    <string name="LabelGestionCompteUtilisateur">Gestion des Comptes Utilisateur</string>
+    <string name="label_ConfirmationMotDePasse">Confirmation Mot de passe</string>
+    <string name="label_GroupeUtilisateur">Groupe Utilisateur</string>
+    <string name="label_Exercices">Exercices</string>
+    <string name="label_Exercicesdentrainement">Exercices d\'entraînement</string>
+    <string name="label_TypeExercices">Type Exercices</string>
+    <string name="label_Quitter">Quitter</string>
+
+    <string name="label_QuestionPrecedente">Retour</string>
+    <string name="label_QuestionSuivante1">Suivante >></string>
+    <string name="label_QuestionSuivante">Suivante</string>
+    <string name="label_Chwazi_yon_Repons">Choisissez une réponse</string>
+    <string name="label_Repons">Réponse</string>
+    <string name="label_Chwazi_yon_Justification">Choisissez une Justification</string>
+
+    <string name="label_Mois">- Mois -</string>
+    <string name="label_Chwazi_yon_Jou">Choisissez le jour</string>
+    <string name="label_Chwazi_yon_Mois">Choisissez le mois</string>
+    <string name="label_Annee">- Année -</string>
+    <string name="label_Chwazi_yon_Annee">Choisissez l\'année</string>
+    <string name="msg_Pakonnen">Pa Konnen</string>
+    <string name="msg_Reponse_Ou_Dwe_Chwazi_Yon_Mwa">Ou dwe chwazi yon mwa</string>
+    <string name="msg_Reponse_Ou_Dwe_Chwazi_Yon_Ane">Ou dwe chwazi yon Ane</string>
+    <string name="label_Chwazi_yon_pays">Choisissez le pays</string>
+    <string name="label_Depatman">Département</string>
+    <string name="label_Chwazi_yon_Depatman">Choisissez le Département</string>
+    <string name="label_Chwazi_yon_Domaine_Etude">Choisissez le domaine d\'étude</string>
+    <string name="label_Chwazi_yon_Seksyon_kominal">Choisissez la Section communale</string>
+    <string name="label_Seksyon_kominal">Section communale</string>
+    <string name="label_Chwazi_yon_Komin">Choisissez la Commune</string>
+    <string name="label_Komin">Commune</string>
+
+    <string name="label_ApareyRadyo">Aparèy Radyo</string>
+    <string name="label_Televizyon">Televizyon</string>
+    <string name="label_FrijideFrize">Frijidè /Frizè</string>
+    <string name="label_FouElektrikFouAkGaz">Fou elektrik/ fou ak gaz</string>
+    <string name="label_OdinatePCLaptopTabletNimerik">Òdinatè PC/Laptòp / Tablèt nimerik</string>
+    <string name="label_BisikletMotosiklet">Bisiklèt/Motosiklèt</string>
+    <string name="label_VwatiMachin">Vwati, Machin</string>
+    <string name="label_KannotBato">Kannòt / bato</string>
+    <string name="label_InvetePanoSoleJeneratrisDelko">Invètè / Pano solè/Jeneratris (Delko)</string>
+    <string name="label_MiletChwalBourik">Milèt/ Chwal/ Bourik</string>
+    <string name="label_BefVach">Bèf / Vach</string>
+    <string name="label_KochonKabrit">Kochon/ Kabrit</string>
+    <string name="label_BetVolayPoulKok">Bèt Volay (Poul, Kok, eks.)</string>
+
+    <string name="label_Gason">Garçon</string>
+    <string name="label_Fi">Fille</string>
+    <string name="label_Jour">Jour</string>
+    <string name="msg_Confirmation_QuitterApplication">Voulez-vous vraiment quitter sans terminer l\'opération.</string>
+    <string name="msg_Reponse_Ou_Dwe_Chwazi_Yon_Repons">Vous devez choisir une réponse</string>
+    <string name="msg_Ou_Dwe_Chwazi_Yon_JustificationRepons">Vous devez choisir une justification</string>
+    <string name="msg_Reponse_Ou_Dwe_Ekri_Chif_Selman">Vous devez ecrire uniquement des chiffres [0-9]</string>
+    <string name="msg_Reponse_Ou_Dwe_Ekri_Let_Oubye_Chif_Selman">Vous devez ecrire uniquement des caractères Alphanumérique [A-Z, 0-9]</string>
+    <string name="msg_Reponse_Ou_Dwe_Ekri_Let_Selman">Vous devez ecrire uniquement de lettres</string>
+    <string name="label_ZoomIn">Zoom In</string>
+    <string name="label_Justification">Justification</string>
+    <string name="label_RappelExercice">Rappelles</string>
+    <string name="label_InstructionsExercice">Instructions</string>
+    <string name="label_DescriptionsExercice">Texte</string>
+    <string name="label_Fin">Fin</string>
+    <string name="msg_Confirmation_Abandonner">Voulez-vous vraiment quitter les autres questions...?\n\nN.B.- Cette action est irréversible...</string>
+    <string name="label_VoirLaListeDesExercices">Voir la liste des Exercices</string>
+    <string name="msg_TitreRapport">Rapport de supervision directe des agents recenseurs</string>
+    <string name="label_redigerRapport">Rediger Rapport</string>
+    <string name="label_ConsulterRapport">Consulter Rapport</string>
+
+
+</resources>
