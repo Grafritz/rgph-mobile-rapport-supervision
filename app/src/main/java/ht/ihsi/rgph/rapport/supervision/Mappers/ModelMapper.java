@@ -170,6 +170,7 @@ public class ModelMapper {
         m.setCodeReponse(entity.getCodeReponse());
         m.setLibelleReponse(entity.getLibelleReponse());
         m.setIsCorrect(entity.getIsCorrect());
+        m.setScoreTotal(entity.getScoreTotal());
         m.setEstEnfant(entity.getEstEnfant());
         m.setAvoirEnfant(entity.getAvoirEnfant());
         m.setCodeParent(entity.getCodeParent());

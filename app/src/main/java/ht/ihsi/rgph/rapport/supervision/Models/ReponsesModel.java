@@ -13,6 +13,7 @@ public class ReponsesModel extends BaseModel  {
     private Long codeQuestion;
     private String libelleReponse;
     private Boolean isCorrect;
+    private Integer scoreTotal;
     private Boolean estEnfant;
     private Boolean avoirEnfant;
     private String codeParent;
@@ -34,6 +35,7 @@ public class ReponsesModel extends BaseModel  {
         this.codeQuestion = codeQuestion;
         this.libelleReponse = libelleReponse;
         this.isCorrect = false;
+        this.scoreTotal = scoreTotal;
         this.estEnfant = false;
         this.avoirEnfant = false;
         this.codeParent = "";
@@ -71,6 +73,14 @@ public class ReponsesModel extends BaseModel  {
 
     public void setIsCorrect(Boolean isCorrect) {
         this.isCorrect = isCorrect;
+    }
+
+    public Integer getScoreTotal() {
+        return scoreTotal;
+    }
+
+    public void setScoreTotal(Integer scoreTotal) {
+        this.scoreTotal = scoreTotal;
     }
 
     public Boolean getEstEnfant() {
