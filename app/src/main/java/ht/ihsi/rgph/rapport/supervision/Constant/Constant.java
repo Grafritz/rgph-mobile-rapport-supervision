@@ -7,7 +7,7 @@ import android.view.Gravity;
  */
  public interface Constant {
 
-    String DATABASE_NAME="rgph_formation_data-db";
+    String DATABASE_NAME="rgph_rapport_supervision";
 
     //region STATIC DATA FILE NAME
     String TBL_QUESTIONS = "data_questions.json";
@@ -40,6 +40,7 @@ import android.view.Gravity;
     String PARAM_FORM_HEADER_ONE="HEADER_FORM_ONE";
     String PARAM_FORM_HEADER_TWO="HEADER_FORM_TWO";
     String PARAM_NUMERO_ORDRE_LOG_INDIVIDUEL="PARAM_NUMERO_ORDRE_LOG_INDIVIDUEL";
+    String PARAM_NOM_AGENT="PARAM_NOM_AGENT";
 
     //endregion
 
@@ -72,6 +73,12 @@ import android.view.Gravity;
 
     int Non_0 = 0;
     int Oui_1 = 1;
+    int Non_2 = 2;
+    int Moyennement_3 = 3;
+    int HorsObservation_4 = 4;
+    int UneFois_5 = 5;
+    int AuMoins2Fois_6 = 6;
+    int Non_7 = 7;
 
     int ACTIF = 1;
     int DESACTIVE = 0;

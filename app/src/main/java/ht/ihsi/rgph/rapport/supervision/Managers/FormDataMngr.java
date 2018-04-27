@@ -3,6 +3,7 @@ package ht.ihsi.rgph.rapport.supervision.Managers;
 import java.util.List;
 
 import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
+import ht.ihsi.rgph.rapport.supervision.Models.FormulaireExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.JustificationReponsesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.PersonnelModel;
 import ht.ihsi.rgph.rapport.supervision.Models.QuestionsModel;
@@ -47,6 +48,7 @@ public  interface FormDataMngr{
      */
     PersonnelModel getPersonnelInfo(String NomUtilisateur, String MotDePasse) throws ManagerException;
 
+    FormulaireExercicesModel getFormulaireExercices_ByID(long codeFormulaire) throws ManagerException;
     //List<Question_FormulaireExercicesModel> getListAllQuestion_FormExercices(long idFormExercice) throws ManagerException;
 
     QuestionsModel getQuestions_Byid(long idQuestion) throws ManagerException;
@@ -58,4 +60,5 @@ public  interface FormDataMngr{
     List<ReponsesModel> getListAllReponsesByQuestion(long codeQuestion) throws ManagerException;
 
     List<JustificationReponsesModel> getListAllJustificationReponsesByQuestion(long codeQuestion) throws ManagerException;
+
 }

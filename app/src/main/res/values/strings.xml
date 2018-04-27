@@ -124,9 +124,12 @@
     <string name="label_Fin">Fin</string>
     <string name="msg_Confirmation_Abandonner">Voulez-vous vraiment quitter les autres questions...?\n\nN.B.- Cette action est irréversible...</string>
     <string name="label_VoirLaListeDesExercices">Voir la liste des Exercices</string>
-    <string name="msg_TitreRapport">Rapport de supervision directe des agents recenseurs</string>
-    <string name="label_redigerRapport">Rediger Rapport</string>
+    <string name="msg_RapportDeSupervisionDirecte">Rapport de supervision directe des agents recenseurs</string>
+    <string name="msg_EvaluationQuantitative">Evaluation quantitative du comportement</string>
+    <string name="label_redigerRapport">Rediger un Rapport</string>
     <string name="label_ConsulterRapport">Consulter Rapport</string>
+    <string name="label_NomCompletAgent">Nom Complet Agent</string>
+    <string name="msg_NomComplet_Obligatoire">Le Nom complet de l\'agent est Obligatoire</string>
 
 
 </resources>

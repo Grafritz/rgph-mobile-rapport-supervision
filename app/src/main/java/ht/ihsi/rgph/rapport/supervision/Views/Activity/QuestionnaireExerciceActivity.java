@@ -58,7 +58,8 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
     EditText et_VwatiMachin, et_KannotBato, et_InvetePanoSoleJeneratrisDelko, et_MiletChwalBourik, et_BefVach, et_KochonKabrit, et_BetVolayPoulKok;
 
     private Button btn_Precedent,  btn_Suivant;
-
+    public long codeAgent=0;
+    public String nomAgent="";
     //endregion
 
     @Override
@@ -67,7 +68,6 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
         setContentView(R.layout.activity_questionnaire_exercice);
 
         try{
-
             infoUser = Tools.SharedPreferences(this);
             if (infoUser != null && infoUser.getProfileId() != null) {
                 getPersId = infoUser.getPersId();
@@ -326,7 +326,7 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
             tv_InstructionsExercice.setVisibility(View.GONE);
             tv_RappelExercice.setVisibility(View.GONE);
 
-            tv_DescriptionsExercice.setText( Html.fromHtml("<b>" + getString(R.string.label_DescriptionsExercice) +"</b><br />"+ qf.formExercicesModel.getDescriptions()));
+            tv_DescriptionsExercice.setText( Html.fromHtml( qf.formExercicesModel.getDescriptions() + " " + qf.nomCompletAgent));
             if(!qf.formExercicesModel.getDescriptions().toString().trim().equalsIgnoreCase("")){
                 tv_DescriptionsExercice.setVisibility(View.VISIBLE);
             }
@@ -374,6 +374,27 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
     }
 
     private void SaveAgent_Evaluation() {
+        try{
+            String dateFinEvaluation = Tools.getDateString_MMddyyyy_HHmmss();
+
+            Agent_Evaluation_ExercicesModel aee = new Agent_Evaluation_ExercicesModel();
+            aee.setCodeExercice(QF.formExercicesModel.getCodeExercice());
+            aee.setPersonnelId(getPersId);
+            aee.setDureeEvaluationEnSeconde(QF.formExercicesModel.getDureeEnSeconde());
+            aee.setDateDebutEvaluationDuRepondant(QF.getDateDebutCollecte());
+            aee.setDateFinEvaluationDuRepondant(dateFinEvaluation);
+            aee.setDureeDuRepondantEnSeconde(""+QF.getDureeSaisie(dateFinEvaluation));
+
+            QF.InsertAgent_Evaluation(cuRecordMngr, aee);
+
+            ShowAlertDialogMsg("Evaluation terminée avec succès...");
+        } catch (Exception ex) {
+            Tools.LogCat("Exception: SaveAgent_Evaluation() :" + ex);
+            Tools.AlertDialogMsg(this, ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    private void SaveNomCompletAgent() {
         try{
             String dateFinEvaluation = Tools.getDateString_MMddyyyy_HHmmss();
 

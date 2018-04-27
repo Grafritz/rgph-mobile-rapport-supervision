@@ -6,16 +6,35 @@ package ht.ihsi.rgph.rapport.supervision.Models;
 
 public class ReponseEntreeModel extends BaseModel  {
     private Long codeReponseEntree;
-    private Long personnelId;
+    private Long codeAgent;
     private Long codeFormulaireExercice;
     private Long codeQuestion;
     private Long codeReponse;
-    private Long CodeJustificationReponse;
-    private String reponseSaisie;
+    private Long ScoreReponse;
     private String createdBy;
     private String dateCreated;
     private String modifBy;
     private String dateModif;
+
+    public ReponseEntreeModel() {
+    }
+
+    public ReponseEntreeModel(Long codeReponseEntree) {
+        this.codeReponseEntree = codeReponseEntree;
+    }
+
+    public ReponseEntreeModel(Long codeReponseEntree, Long codeAgent, Long codeFormulaireExercice, Long codeQuestion, Long codeReponse, Long ScoreReponse, String createdBy, String dateCreated, String modifBy, String dateModif) {
+        this.codeReponseEntree = codeReponseEntree;
+        this.codeAgent = codeAgent;
+        this.codeFormulaireExercice = codeFormulaireExercice;
+        this.codeQuestion = codeQuestion;
+        this.codeReponse = codeReponse;
+        this.ScoreReponse = ScoreReponse;
+        this.createdBy = createdBy;
+        this.dateCreated = dateCreated;
+        this.modifBy = modifBy;
+        this.dateModif = dateModif;
+    }
 
     public Long getCodeReponseEntree() {
         return codeReponseEntree;
@@ -25,12 +44,12 @@ public class ReponseEntreeModel extends BaseModel  {
         this.codeReponseEntree = codeReponseEntree;
     }
 
-    public Long getPersonnelId() {
-        return personnelId;
+    public Long getCodeAgent() {
+        return codeAgent;
     }
 
-    public void setPersonnelId(Long personnelId) {
-        this.personnelId = personnelId;
+    public void setCodeAgent(Long codeAgent) {
+        this.codeAgent = codeAgent;
     }
 
     public Long getCodeFormulaireExercice() {
@@ -57,20 +76,12 @@ public class ReponseEntreeModel extends BaseModel  {
         this.codeReponse = codeReponse;
     }
 
-    public Long getCodeJustificationReponse() {
-        return CodeJustificationReponse;
+    public Long getScoreReponse() {
+        return ScoreReponse;
     }
 
-    public void setCodeJustificationReponse(Long CodeJustificationReponse) {
-        this.CodeJustificationReponse = CodeJustificationReponse;
-    }
-
-    public String getReponseSaisie() {
-        return reponseSaisie;
-    }
-
-    public void setReponseSaisie(String reponseSaisie) {
-        this.reponseSaisie = reponseSaisie;
+    public void setScoreReponse(Long ScoreReponse) {
+        this.ScoreReponse = ScoreReponse;
     }
 
     public String getCreatedBy() {

@@ -75,6 +75,17 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
     private String contrainteSautChampsValeur;
     private String qPrecedent;
     private String qSuivant;
+    public long codeAgent=0;
+    public String nomCompletAgent ="";
+
+    public double scoreFinalAtteint=0;
+    public double ScoreOui_1=0;
+    public double ScoreNon_2=0;
+    public double ScoreMoyennement_3=0;
+    public double ScoreHorsObservation_4=0;
+    public double ScoreUneFois_5=0;
+    public double ScoreAuMoins2Fois_6=0;
+    public double ScoreNon_7=0;
 
     public int NbChar;
 
@@ -743,7 +754,7 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
     ) throws TextEmptyException {
         try {
             String _message = "", ValReponseSaisie="";
-            long ValReponse = 0, ValJustificationReponse = 0;
+            long ValReponse = 0,scoreReponse=0,codeReponseManuel=0, ValJustificationReponse = 0;
             ReponsesModel reponseModel = null, reponseModel2 = null;
             JustificationReponsesModel justificationReponsesModel = null;
             KeyValueModel keyValueModel = null;
@@ -751,9 +762,34 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
             if ( this.typeQuestion == Constant.TYPE_QUESTION_CHOIX_1 ) {
                 reponseModel = ((ReponsesModel) sp_Reponse.getSelectedItem());
                 ValReponse = reponseModel.getCodeReponse();
+                scoreReponse = reponseModel.getScoreTotal();
+                codeReponseManuel = reponseModel.getCodeReponseManuel();
                 if ( ValReponse <= 0 ) {
                     throw new TextEmptyException(context.getString(R.string.msg_Reponse_Ou_Dwe_Chwazi_Yon_Repons));
                 }
+                this.scoreFinalAtteint += scoreReponse;
+                if( reponseModel.getCodeReponseManuel() == Constant.Oui_1 ){
+                    this.ScoreOui_1 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.Non_2 ){
+                    this.ScoreNon_2 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.Moyennement_3 ){
+                    this.ScoreMoyennement_3 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.HorsObservation_4 ){
+                    this.ScoreHorsObservation_4 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.UneFois_5 ){
+                    this.ScoreUneFois_5 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.AuMoins2Fois_6 ){
+                    this.ScoreAuMoins2Fois_6 += scoreReponse;
+
+                }else  if( reponseModel.getCodeReponseManuel() == Constant.Non_7 ){
+                    this.ScoreNon_7 += scoreReponse;
+                }
+
                 if( this.avoirJustificationYN  ){
                     justificationReponsesModel = ((JustificationReponsesModel) sp_Reponse2.getSelectedItem());
                     ValJustificationReponse = justificationReponsesModel.getCodeJustification();
@@ -795,20 +831,21 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
 
             Shared_Preferences spreferences = Tools.SharedPreferences(context);
 
-            long personnelId = spreferences.getPersId();
+            //long personnelId = spreferences.getPersId();
             long codeFormulaireExercice = this.formExercicesModel.getCodeExercice();
             long codeQuestion = this.codeQuestion;
             long codeReponse = ValReponse;
-            long codeJustificationReponse = ValJustificationReponse;
+            //long codeJustificationReponse = ValJustificationReponse;
             String reponseSaisie = ValReponseSaisie;
 
             ReponseEntreeModel temp = new ReponseEntreeModel();
-            temp.setPersonnelId(personnelId);
+            temp.setCodeAgent(codeAgent);
             temp.setCodeFormulaireExercice(codeFormulaireExercice);
             temp.setCodeQuestion(codeQuestion);
             temp.setCodeReponse(codeReponse);
-            temp.setCodeJustificationReponse(codeJustificationReponse);
-            temp.setReponseSaisie(reponseSaisie);
+
+            temp.setScoreReponse(scoreReponse);
+            //temp.setReponseSaisie(reponseSaisie);
             temp.setCreatedBy(spreferences.getNomUtilisateur());
             temp.setDateCreated(Tools.getDateString_MMddyyyy_HHmmss());
             tempReponseEntreeModel.add(temp);

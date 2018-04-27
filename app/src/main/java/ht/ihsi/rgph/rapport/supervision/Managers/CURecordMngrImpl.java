@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapportDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Agent_Evaluation_ExercicesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.DaoSession;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Personnel;
@@ -14,6 +15,7 @@ import ht.ihsi.rgph.rapport.supervision.Constant.Constant;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.TextEmptyException;
 import ht.ihsi.rgph.rapport.supervision.Mappers.ModelMapper;
+import ht.ihsi.rgph.rapport.supervision.Models.AgentRapportModel;
 import ht.ihsi.rgph.rapport.supervision.Models.Agent_Evaluation_ExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.PersonnelModel;
 import ht.ihsi.rgph.rapport.supervision.Models.ReponseEntreeModel;
@@ -86,6 +88,27 @@ public class CURecordMngrImpl extends AbstractDatabaseManager implements CURecor
                 Log.d(Tools.TAG, "Agent_Evaluation_ExercicesModel / Insert ID:" + _id );
                 daoSession.clear();
                 return agent_evaluation_exercicesModel;
+            } else {
+                throw new ManagerException("Une erreur est survenue lors de l'enregistrement ");
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public AgentRapportModel InsertAgentRapport(AgentRapportModel agentRapport) throws ManagerException {
+        if ( agentRapport != null ) {
+            AgentRapportModel agentRapportModel = new AgentRapportModel();
+            openWritableDb();
+            AgentRapportDao obj = daoSession.getAgentRapportDao();
+            long _id = obj.insert(ModelMapper.MapTo(agentRapport));
+            if ( _id != 0 ) {
+                //ReponseEntree bat = obj.load(_id);
+                agentRapportModel = agentRapport;
+                agentRapportModel.setCodeAgent(_id);
+                Log.d(Tools.TAG, "Agent Rapport / Insert ID:" + _id );
+                daoSession.clear();
+                return agentRapportModel;
             } else {
                 throw new ManagerException("Une erreur est survenue lors de l'enregistrement ");
             }

@@ -5,9 +5,11 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapport;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Agent_Evaluation_Exercices;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Commune;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Departement;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.FormulaireExercices;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.JustificationReponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Personnel;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.PersonnelDao;
@@ -16,9 +18,11 @@ import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.ReponseEntree;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Reponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Vqse;
 import ht.ihsi.rgph.rapport.supervision.Constant.Constant;
+import ht.ihsi.rgph.rapport.supervision.Models.AgentRapportModel;
 import ht.ihsi.rgph.rapport.supervision.Models.Agent_Evaluation_ExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.CommuneModel;
 import ht.ihsi.rgph.rapport.supervision.Models.DepartementModel;
+import ht.ihsi.rgph.rapport.supervision.Models.FormulaireExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.JustificationReponsesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.KeyValueModel;
 import ht.ihsi.rgph.rapport.supervision.Models.PersonnelModel;
@@ -69,6 +73,26 @@ public class ModelMapper {
         return result;
     }
 
+    public static AgentRapport MapTo(AgentRapportModel entity) {
+        AgentRapport m = new AgentRapport();
+        m.setCodeAgent(entity.getCodeAgent()) ;
+        m.setNomCompletAgent(entity.getNomCompletAgent());
+        m.setCommentairesGeneraux(entity.getCommentairesGeneraux());
+        m.setScoreFinalAtteint(entity.getScoreFinalAtteint());
+
+        m.setScoreOui1(entity.getScoreOui1());
+        m.setScoreNon2(entity.getScoreNon2());
+        m.setScoreMoyennement3(entity.getScoreMoyennement3());
+        m.setScoreHorsObservation4(entity.getScoreHorsObservation4());
+
+        m.setScoreUneFois1(entity.getScoreUneFois1());
+        m.setScoreAuMoins2Fois2(entity.getScoreAuMoins2Fois2());
+        m.setScoreNon3(entity.getScoreNon3());
+
+        m.setCreatedBy(entity.getCreatedBy());
+        m.setDateCreated(entity.getDateCreated());
+        return m;
+    }
     public static Agent_Evaluation_ExercicesModel MapTo(Agent_Evaluation_Exercices entity) {
         Agent_Evaluation_ExercicesModel m = new Agent_Evaluation_ExercicesModel();
         m.setCodeExercice(entity.getCodeExercice()) ;
@@ -168,6 +192,7 @@ public class ModelMapper {
         ReponsesModel m = new ReponsesModel();
         m.setCodeQuestion(entity.getCodeQuestion());
         m.setCodeReponse(entity.getCodeReponse());
+        m.setCodeReponseManuel(entity.getCodeReponseManuel());
         m.setLibelleReponse(entity.getLibelleReponse());
         m.setIsCorrect(entity.getIsCorrect());
         m.setScoreTotal(entity.getScoreTotal());
@@ -188,16 +213,30 @@ public class ModelMapper {
 
     public static ReponseEntree MapTo(ReponseEntreeModel entity) {
         ReponseEntree m = new ReponseEntree();
-        m.setPersonnelId(entity.getPersonnelId());
+        m.setCodeAgent(entity.getCodeAgent());
         m.setCodeFormulaireExercice(entity.getCodeFormulaireExercice());
         m.setCodeQuestion(entity.getCodeQuestion());
         m.setCodeReponse(entity.getCodeReponse());
-        m.setCodeJustificationReponse(entity.getCodeJustificationReponse());
-        m.setReponseSaisie(entity.getReponseSaisie());
+        m.setCodeReponseEntree(entity.getCodeReponseEntree());
+        m.setScoreReponse(entity.getScoreReponse());
         m.setCreatedBy(entity.getCreatedBy());
         m.setDateCreated(entity.getDateCreated());
         m.setModifBy(entity.getModifBy());
         m.setDateModif(entity.getDateModif());
+        return m;
+    }
+
+    public static FormulaireExercicesModel MapTo(FormulaireExercices entity) {
+        FormulaireExercicesModel m = new FormulaireExercicesModel();
+        m.setCodeExercice(entity.getCodeExercice());
+        m.setLibelleExercice(entity.getLibelleExercice());
+        m.setDescriptions(entity.getDescriptions());
+        m.setInstructions(entity.getInstructions());
+        m.setRappelExercice(entity.getRappelExercice());
+        m.setTypeEvaluation(entity.getTypeEvaluation());
+        m.setStatut(entity.getTypeEvaluation());
+        m.setStatut(entity.getStatut());
+        m.setDureeEnSeconde(entity.getDureeEnSeconde());
         return m;
     }
     //endregion

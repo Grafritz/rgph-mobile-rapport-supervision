@@ -79,6 +79,7 @@ public class GenericEntityDao {
 
     public static void createReponsesEntity(Entity entity){
         entity.addLongProperty("codeReponse").columnName("codeReponse").primaryKey();
+        entity.addLongProperty("codeReponseManuel").columnName("codeReponseManuel");
         entity.addLongProperty("codeQuestion").columnName("codeQuestion");
         entity.addStringProperty("libelleReponse").columnName("libelleReponse");
         entity.addBooleanProperty("isCorrect").columnName("isCorrect");
@@ -103,16 +104,32 @@ public class GenericEntityDao {
 
     public static void createReponseEntreeEntity(Entity entity){
         entity.addLongProperty("codeReponseEntree").columnName("codeReponseEntree").primaryKey();
-        entity.addLongProperty("personnelId").columnName("personnelId");
+        entity.addLongProperty("codeAgent").columnName("codeAgent");
         entity.addLongProperty("codeFormulaireExercice").columnName("codeFormulaireExercice");
         entity.addLongProperty("codeQuestion").columnName("codeQuestion");
         entity.addLongProperty("codeReponse").columnName("codeReponse");
-        entity.addLongProperty("CodeJustificationReponse").columnName("CodeJustificationReponse");
-        entity.addStringProperty("reponseSaisie").columnName("reponseSaisie");
+        entity.addLongProperty("ScoreReponse").columnName("ScoreReponse");
         entity.addStringProperty("createdBy").columnName("createdBy");
         entity.addStringProperty("dateCreated").columnName("dateCreated");
         entity.addStringProperty("modifBy").columnName("modifBy");
         entity.addStringProperty("dateModif").columnName("dateModif");
+    }
+
+
+    public static void createAgentRapportEntity(Entity entity){
+        entity.addLongProperty("codeAgent").columnName("codeAgent").primaryKey().autoincrement();
+        entity.addStringProperty("nomCompletAgent").columnName("nomCompletAgent");
+        entity.addStringProperty("commentairesGeneraux ").columnName("commentairesGeneraux");
+        entity.addStringProperty("scoreFinalAtteint").columnName("scoreFinalAtteint");
+        entity.addLongProperty("ScoreOui1").columnName("ScoreOui1");
+        entity.addLongProperty("ScoreNon2").columnName("ScoreNon2");
+        entity.addLongProperty("ScoreMoyennement3").columnName("ScoreMoyennement3");
+        entity.addLongProperty("ScoreHorsObservation4").columnName("ScoreHorsObservation4");
+        entity.addLongProperty("ScoreUneFois1").columnName("ScoreUneFois1");
+        entity.addLongProperty("ScoreAuMoins2Fois2").columnName("ScoreAuMoins2Fois2");
+        entity.addLongProperty("ScoreNon3").columnName("ScoreNon3");
+        entity.addStringProperty("createdBy").columnName("createdBy");
+        entity.addStringProperty("dateCreated").columnName("dateCreated");
     }
 
     //region [ Localisation ]

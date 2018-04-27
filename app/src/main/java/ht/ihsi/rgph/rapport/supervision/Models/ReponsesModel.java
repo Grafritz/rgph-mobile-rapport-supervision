@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class ReponsesModel extends BaseModel  {
 
     private Long codeReponse;
+    private Long codeReponseManuel;
     private Long codeQuestion;
     private String libelleReponse;
     private Boolean isCorrect;
@@ -17,8 +18,6 @@ public class ReponsesModel extends BaseModel  {
     private Boolean estEnfant;
     private Boolean avoirEnfant;
     private String codeParent;
-    private String createdBy;
-    private String dateCreated;
 
 
     //region CONTROLS
@@ -32,23 +31,47 @@ public class ReponsesModel extends BaseModel  {
 
     public ReponsesModel(Long codeReponse, Long codeQuestion, String libelleReponse) {
         this.codeReponse = codeReponse;
+        this.codeReponseManuel = Long.valueOf(0);
         this.codeQuestion = codeQuestion;
         this.libelleReponse = libelleReponse;
         this.isCorrect = false;
-        this.scoreTotal = scoreTotal;
+        this.scoreTotal = 0;
         this.estEnfant = false;
         this.avoirEnfant = false;
         this.codeParent = "";
     }
     //endregion
 
-    //endregion
+    public ReponsesModel(Long codeReponse) {
+        this.codeReponse = codeReponse;
+    }
+
+    public ReponsesModel(Long codeReponse, Long codeReponseManuel, Long codeQuestion, String libelleReponse, Boolean isCorrect, Integer scoreTotal, Boolean estEnfant, Boolean avoirEnfant, String codeParent) {
+        this.codeReponse = codeReponse;
+        this.codeReponseManuel = codeReponseManuel;
+        this.codeQuestion = codeQuestion;
+        this.libelleReponse = libelleReponse;
+        this.isCorrect = isCorrect;
+        this.scoreTotal = scoreTotal;
+        this.estEnfant = estEnfant;
+        this.avoirEnfant = avoirEnfant;
+        this.codeParent = codeParent;
+    }
+
     public Long getCodeReponse() {
         return codeReponse;
     }
 
     public void setCodeReponse(Long codeReponse) {
         this.codeReponse = codeReponse;
+    }
+
+    public Long getCodeReponseManuel() {
+        return codeReponseManuel;
+    }
+
+    public void setCodeReponseManuel(Long codeReponseManuel) {
+        this.codeReponseManuel = codeReponseManuel;
     }
 
     public Long getCodeQuestion() {
@@ -107,24 +130,11 @@ public class ReponsesModel extends BaseModel  {
         this.codeParent = codeParent;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
+    //region [ TOSTRING ]
     @Override
     public String toString() {
-        return this.libelleReponse.toString();
+        return this.libelleReponse.toString()+" [ " +this.scoreTotal +" pts ]";
     }
+    //endregion
 }

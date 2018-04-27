@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#ff8800</color>
     <color name="colorOrange">#ff8800</color>
     <color name="colorGreenDark">#006633</color>
@@ -16,12 +16,12 @@
     <color name="white">#ffffff</color>
 
 
-    <color name="colorBgGrandTitre">#304FFE</color>
+    <color name="colorBgGrandTitre">#00BFA5</color>
     <color name="colorBgSousCategorie">#8C9EFF</color>
 
 
-    <color name="theme_primary">#2196F3</color>
-    <color name="theme_primary_dark">#1976D2</color>
+    <color name="theme_primary">#009688</color>
+    <color name="theme_primary_dark">#00796B</color>
     <color name="theme_primary_light">#BBDEFB</color>
 
     <color name="theme_background">#FFFFFF</color>
@@ -42,13 +42,12 @@
     <color name="rgph_custom_gray_highLight">#c7e2ec</color>
 
     <color name="rgph_list_image_gb">#05013b68</color>
-    <color name="rgph_list_desc">#1976D2</color>
+    <color name="rgph_list_desc">#00796B</color>
 
     <color name="button_pressed">#e4e3e1</color>
     <color name="button_focused">#ff8a00</color>
     <color name="button_default">#CCCCCC</color>
 
-    <color name="button_pressed_green">#4DB6AC</color>
     <color name="button_pressed_orange">#FFB74D</color>
     <color name="button_pressed_orange2">#FFCA28</color>
 
@@ -58,6 +57,10 @@
     <color name="button_pressed_bleuLight">#E3F2FD</color>
     <color name="button_pressed_bleu">#2196F3</color>
     <color name="button_pressed_bleuEnd">#90CAF9</color>
+
+    <color name="button_pressed_greenLight">#E0F2F1</color>
+    <color name="button_pressed_green">#009688</color>
+    <color name="button_pressed_greenEnd">#80CBC4</color>
 
     <color name="button_pressed_grisLight">#D6D6D6</color>
     <color name="button_pressed_gris">#E2E2E2</color>

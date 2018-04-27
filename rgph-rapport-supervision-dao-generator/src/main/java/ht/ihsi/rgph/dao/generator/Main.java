@@ -21,6 +21,7 @@ public class Main {
     public static final String REPONSES_OBJECT="Reponses";
     public static final String JUSTIFICATION_REPONSES_OBJECT="JustificationReponses";
     public static final String REPONSE_ENTREE_OBJECT="ReponseEntree";
+    public static final String AGENT_RAPPORT_ENTREE_OBJECT="AgentRapport";
     public static final String DEPARTEMENT_OBJECT ="Departement";
     public static final String COMMUNE_OBJECT ="Commune";
     public static final String VQSE_OBJECT ="Vqse";
@@ -33,6 +34,7 @@ public class Main {
     public static final String TBL_REPONSES_OBJECT="Tbl_Reponses";
     public static final String TBL_JUSTIFICATION_REPONSES_OBJECT="Tbl_JustificationReponses";
     public static final String TBL_REPONSE_ENTREE_OBJECT="Tbl_ReponseEntree";
+    public static final String TBL_AGENT_RAPPORT_ENTREE_OBJECT="Tbl_AgentRapport";
 
     public static final String TBL_DEPARTEMENT ="tbl_departement";
     public static final String TBL_COMMUNE ="tbl_commune";
@@ -77,6 +79,10 @@ public class Main {
         Entity ReponseEntree= schema.addEntity(REPONSE_ENTREE_OBJECT);
         ReponseEntree.setTableName(TBL_REPONSE_ENTREE_OBJECT);
         GenericEntityDao.createReponseEntreeEntity(ReponseEntree);
+
+        Entity agentRapport= schema.addEntity(AGENT_RAPPORT_ENTREE_OBJECT);
+        ReponseEntree.setTableName(TBL_AGENT_RAPPORT_ENTREE_OBJECT);
+        GenericEntityDao.createAgentRapportEntity(agentRapport);
 
 
         Entity departement=schema.addEntity(DEPARTEMENT_OBJECT);

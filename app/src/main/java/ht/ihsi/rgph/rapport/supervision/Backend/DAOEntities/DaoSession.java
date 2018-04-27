@@ -17,6 +17,7 @@ import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Questions;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Reponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.JustificationReponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.ReponseEntree;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapport;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Departement;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Commune;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Vqse;
@@ -29,6 +30,7 @@ import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.QuestionsDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.ReponsesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.JustificationReponsesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.ReponseEntreeDao;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapportDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.DepartementDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.CommuneDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.VqseDao;
@@ -50,6 +52,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig reponsesDaoConfig;
     private final DaoConfig justificationReponsesDaoConfig;
     private final DaoConfig reponseEntreeDaoConfig;
+    private final DaoConfig agentRapportDaoConfig;
     private final DaoConfig departementDaoConfig;
     private final DaoConfig communeDaoConfig;
     private final DaoConfig vqseDaoConfig;
@@ -62,6 +65,7 @@ public class DaoSession extends AbstractDaoSession {
     private final ReponsesDao reponsesDao;
     private final JustificationReponsesDao justificationReponsesDao;
     private final ReponseEntreeDao reponseEntreeDao;
+    private final AgentRapportDao agentRapportDao;
     private final DepartementDao departementDao;
     private final CommuneDao communeDao;
     private final VqseDao vqseDao;
@@ -94,6 +98,9 @@ public class DaoSession extends AbstractDaoSession {
         reponseEntreeDaoConfig = daoConfigMap.get(ReponseEntreeDao.class).clone();
         reponseEntreeDaoConfig.initIdentityScope(type);
 
+        agentRapportDaoConfig = daoConfigMap.get(AgentRapportDao.class).clone();
+        agentRapportDaoConfig.initIdentityScope(type);
+
         departementDaoConfig = daoConfigMap.get(DepartementDao.class).clone();
         departementDaoConfig.initIdentityScope(type);
 
@@ -111,6 +118,7 @@ public class DaoSession extends AbstractDaoSession {
         reponsesDao = new ReponsesDao(reponsesDaoConfig, this);
         justificationReponsesDao = new JustificationReponsesDao(justificationReponsesDaoConfig, this);
         reponseEntreeDao = new ReponseEntreeDao(reponseEntreeDaoConfig, this);
+        agentRapportDao = new AgentRapportDao(agentRapportDaoConfig, this);
         departementDao = new DepartementDao(departementDaoConfig, this);
         communeDao = new CommuneDao(communeDaoConfig, this);
         vqseDao = new VqseDao(vqseDaoConfig, this);
@@ -123,6 +131,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(Reponses.class, reponsesDao);
         registerDao(JustificationReponses.class, justificationReponsesDao);
         registerDao(ReponseEntree.class, reponseEntreeDao);
+        registerDao(AgentRapport.class, agentRapportDao);
         registerDao(Departement.class, departementDao);
         registerDao(Commune.class, communeDao);
         registerDao(Vqse.class, vqseDao);
@@ -137,6 +146,7 @@ public class DaoSession extends AbstractDaoSession {
         reponsesDaoConfig.getIdentityScope().clear();
         justificationReponsesDaoConfig.getIdentityScope().clear();
         reponseEntreeDaoConfig.getIdentityScope().clear();
+        agentRapportDaoConfig.getIdentityScope().clear();
         departementDaoConfig.getIdentityScope().clear();
         communeDaoConfig.getIdentityScope().clear();
         vqseDaoConfig.getIdentityScope().clear();
@@ -172,6 +182,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public ReponseEntreeDao getReponseEntreeDao() {
         return reponseEntreeDao;
+    }
+
+    public AgentRapportDao getAgentRapportDao() {
+        return agentRapportDao;
     }
 
     public DepartementDao getDepartementDao() {

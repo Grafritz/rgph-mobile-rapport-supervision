@@ -52,4 +52,22 @@
         <item name="android:paddingTop">@dimen/activity_10dp</item>
         <item name="android:layout_marginBottom">@dimen/activity_10dp</item>
     </style>
+
+
+    <style name="linearLayoutStyle">
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:paddingLeft">@dimen/activity_10dp</item>
+        <item name="android:paddingRight">@dimen/activity_10dp</item>
+        <item name="android:paddingBottom">@dimen/activity_10dp</item>
+        <item name="android:paddingTop">@dimen/activity_10dp</item>
+        <item name="android:layout_marginBottom">@dimen/activity_10dp</item>
+    </style>
+
+    <style name="tvTitre2">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
 </resources>

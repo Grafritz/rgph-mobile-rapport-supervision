@@ -24,13 +24,14 @@ public class ReponsesDao extends AbstractDao<Reponses, Long> {
     */
     public static class Properties {
         public final static Property CodeReponse = new Property(0, Long.class, "codeReponse", true, "codeReponse");
-        public final static Property CodeQuestion = new Property(1, Long.class, "codeQuestion", false, "codeQuestion");
-        public final static Property LibelleReponse = new Property(2, String.class, "libelleReponse", false, "libelleReponse");
-        public final static Property IsCorrect = new Property(3, Boolean.class, "isCorrect", false, "isCorrect");
-        public final static Property ScoreTotal = new Property(4, Integer.class, "scoreTotal", false, "scoreTotal");
-        public final static Property EstEnfant = new Property(5, Boolean.class, "estEnfant", false, "estEnfant");
-        public final static Property AvoirEnfant = new Property(6, Boolean.class, "avoirEnfant", false, "avoirEnfant");
-        public final static Property CodeParent = new Property(7, String.class, "codeParent", false, "codeParent");
+        public final static Property CodeReponseManuel = new Property(1, Long.class, "codeReponseManuel", false, "codeReponseManuel");
+        public final static Property CodeQuestion = new Property(2, Long.class, "codeQuestion", false, "codeQuestion");
+        public final static Property LibelleReponse = new Property(3, String.class, "libelleReponse", false, "libelleReponse");
+        public final static Property IsCorrect = new Property(4, Boolean.class, "isCorrect", false, "isCorrect");
+        public final static Property ScoreTotal = new Property(5, Integer.class, "scoreTotal", false, "scoreTotal");
+        public final static Property EstEnfant = new Property(6, Boolean.class, "estEnfant", false, "estEnfant");
+        public final static Property AvoirEnfant = new Property(7, Boolean.class, "avoirEnfant", false, "avoirEnfant");
+        public final static Property CodeParent = new Property(8, String.class, "codeParent", false, "codeParent");
     };
 
 
@@ -47,13 +48,14 @@ public class ReponsesDao extends AbstractDao<Reponses, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"Tbl_Reponses\" (" + //
                 "\"codeReponse\" INTEGER PRIMARY KEY ," + // 0: codeReponse
-                "\"codeQuestion\" INTEGER," + // 1: codeQuestion
-                "\"libelleReponse\" TEXT," + // 2: libelleReponse
-                "\"isCorrect\" INTEGER," + // 3: isCorrect
-                "\"scoreTotal\" INTEGER," + // 4: scoreTotal
-                "\"estEnfant\" INTEGER," + // 5: estEnfant
-                "\"avoirEnfant\" INTEGER," + // 6: avoirEnfant
-                "\"codeParent\" TEXT);"); // 7: codeParent
+                "\"codeReponseManuel\" INTEGER," + // 1: codeReponseManuel
+                "\"codeQuestion\" INTEGER," + // 2: codeQuestion
+                "\"libelleReponse\" TEXT," + // 3: libelleReponse
+                "\"isCorrect\" INTEGER," + // 4: isCorrect
+                "\"scoreTotal\" INTEGER," + // 5: scoreTotal
+                "\"estEnfant\" INTEGER," + // 6: estEnfant
+                "\"avoirEnfant\" INTEGER," + // 7: avoirEnfant
+                "\"codeParent\" TEXT);"); // 8: codeParent
     }
 
     /** Drops the underlying database table. */
@@ -72,39 +74,44 @@ public class ReponsesDao extends AbstractDao<Reponses, Long> {
             stmt.bindLong(1, codeReponse);
         }
  
+        Long codeReponseManuel = entity.getCodeReponseManuel();
+        if (codeReponseManuel != null) {
+            stmt.bindLong(2, codeReponseManuel);
+        }
+ 
         Long codeQuestion = entity.getCodeQuestion();
         if (codeQuestion != null) {
-            stmt.bindLong(2, codeQuestion);
+            stmt.bindLong(3, codeQuestion);
         }
  
         String libelleReponse = entity.getLibelleReponse();
         if (libelleReponse != null) {
-            stmt.bindString(3, libelleReponse);
+            stmt.bindString(4, libelleReponse);
         }
  
         Boolean isCorrect = entity.getIsCorrect();
         if (isCorrect != null) {
-            stmt.bindLong(4, isCorrect ? 1L: 0L);
+            stmt.bindLong(5, isCorrect ? 1L: 0L);
         }
  
         Integer scoreTotal = entity.getScoreTotal();
         if (scoreTotal != null) {
-            stmt.bindLong(5, scoreTotal);
+            stmt.bindLong(6, scoreTotal);
         }
  
         Boolean estEnfant = entity.getEstEnfant();
         if (estEnfant != null) {
-            stmt.bindLong(6, estEnfant ? 1L: 0L);
+            stmt.bindLong(7, estEnfant ? 1L: 0L);
         }
  
         Boolean avoirEnfant = entity.getAvoirEnfant();
         if (avoirEnfant != null) {
-            stmt.bindLong(7, avoirEnfant ? 1L: 0L);
+            stmt.bindLong(8, avoirEnfant ? 1L: 0L);
         }
  
         String codeParent = entity.getCodeParent();
         if (codeParent != null) {
-            stmt.bindString(8, codeParent);
+            stmt.bindString(9, codeParent);
         }
     }
 
@@ -119,13 +126,14 @@ public class ReponsesDao extends AbstractDao<Reponses, Long> {
     public Reponses readEntity(Cursor cursor, int offset) {
         Reponses entity = new Reponses( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // codeReponse
-            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // codeQuestion
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // libelleReponse
-            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0, // isCorrect
-            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // scoreTotal
-            cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0, // estEnfant
-            cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0, // avoirEnfant
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // codeParent
+            cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // codeReponseManuel
+            cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2), // codeQuestion
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // libelleReponse
+            cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0, // isCorrect
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // scoreTotal
+            cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0, // estEnfant
+            cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0, // avoirEnfant
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // codeParent
         );
         return entity;
     }
@@ -134,13 +142,14 @@ public class ReponsesDao extends AbstractDao<Reponses, Long> {
     @Override
     public void readEntity(Cursor cursor, Reponses entity, int offset) {
         entity.setCodeReponse(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setCodeQuestion(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
-        entity.setLibelleReponse(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setIsCorrect(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
-        entity.setScoreTotal(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setEstEnfant(cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0);
-        entity.setAvoirEnfant(cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0);
-        entity.setCodeParent(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setCodeReponseManuel(cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1));
+        entity.setCodeQuestion(cursor.isNull(offset + 2) ? null : cursor.getLong(offset + 2));
+        entity.setLibelleReponse(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setIsCorrect(cursor.isNull(offset + 4) ? null : cursor.getShort(offset + 4) != 0);
+        entity.setScoreTotal(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setEstEnfant(cursor.isNull(offset + 6) ? null : cursor.getShort(offset + 6) != 0);
+        entity.setAvoirEnfant(cursor.isNull(offset + 7) ? null : cursor.getShort(offset + 7) != 0);
+        entity.setCodeParent(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     /** @inheritdoc */

@@ -1,8 +1,10 @@
 package ht.ihsi.rgph.rapport.supervision.Managers;
 
 
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapport;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.TextEmptyException;
+import ht.ihsi.rgph.rapport.supervision.Models.AgentRapportModel;
 import ht.ihsi.rgph.rapport.supervision.Models.Agent_Evaluation_ExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.PersonnelModel;
 import ht.ihsi.rgph.rapport.supervision.Models.ReponseEntreeModel;
@@ -42,6 +44,8 @@ public interface CURecordMngr {
     ReponseEntreeModel InsertReponseEntree(ReponseEntreeModel reponseEntreeModel) throws ManagerException, TextEmptyException;
 
     Agent_Evaluation_ExercicesModel InsertAgent_Evaluation_Exercices(Agent_Evaluation_ExercicesModel agent_evaluation_exercicesModel) throws ManagerException;
+
+    AgentRapportModel InsertAgentRapport(AgentRapportModel agentRapport) throws ManagerException;
 
 
 }

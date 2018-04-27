@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.FormulaireExercices;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.FormulaireExercicesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.JustificationReponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.JustificationReponsesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Personnel;
@@ -20,6 +22,7 @@ import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Reponses;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.ReponsesDao;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
 import ht.ihsi.rgph.rapport.supervision.Mappers.ModelMapper;
+import ht.ihsi.rgph.rapport.supervision.Models.FormulaireExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.JustificationReponsesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.PersonnelModel;
 import ht.ihsi.rgph.rapport.supervision.Models.QuestionsModel;
@@ -91,7 +94,7 @@ public class FormDataMngrImpl extends AbstractDatabaseManager implements FormDat
      */
     @Override
     public PersonnelModel getPersonnelInfo(String NomUtilisateur, String MotDePasse) throws ManagerException {
-        Log.i(MANAGERS, "Inside of getPersonnelInfo!");
+        //Log.i(MANAGERS, "Inside of getPersonnelInfo!");
         PersonnelModel result = null;
         try {
             openReadableDb();
@@ -105,6 +108,24 @@ public class FormDataMngrImpl extends AbstractDatabaseManager implements FormDat
         }catch(Exception ex){
             Log.e(MANAGERS, "Exception <> unable to get Personne lInfo : " + ex.getMessage());
             throw  new ManagerException("<> unable to get Personnel Info : ",ex);
+        }
+        return result;
+    }
+
+    @Override
+    public FormulaireExercicesModel getFormulaireExercices_ByID(long codeExercice) throws ManagerException {
+        FormulaireExercicesModel result = null;
+        try {
+            openReadableDb();
+            FormulaireExercices personnel = daoSession.getFormulaireExercicesDao().queryBuilder()
+                    .where(FormulaireExercicesDao.Properties.CodeExercice.eq(codeExercice)).unique();
+            if( personnel != null ){
+                result = ModelMapper.MapTo(personnel);
+            }
+            daoSession.clear();
+        }catch(Exception ex){
+            //Log.e(MANAGERS, "Exception <> unable to get Personne lInfo : " + ex.getMessage());
+            throw  new ManagerException("Unable to get Formulaire Exercices ByID : ",ex);
         }
         return result;
     }
