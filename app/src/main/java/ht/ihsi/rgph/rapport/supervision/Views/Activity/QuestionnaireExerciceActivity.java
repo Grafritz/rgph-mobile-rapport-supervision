@@ -251,7 +251,7 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
                             QuestionnaireExerciceActivity.super.onKeyDown(_keyCode, _event);
 
                             // Enregistrement des informations pour empecher que l'utilisateur passe a nouveau l'evaluation
-                            SaveAgent_Evaluation();
+                            ShowFormulaireSaisieAgentRapport();
                         }
                     });
             AlertDialog alert = builder.create();
@@ -478,7 +478,7 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
     }
     //endregion
 
-    private void SaveAgent_Evaluation() {
+    /*private void SaveAgent_Evaluation() {
         try{
             String dateFinEvaluation = Tools.getDateString_MMddyyyy_HHmmss();
 
@@ -498,7 +498,8 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
             Tools.AlertDialogMsg(this, ex.getMessage());
             ex.printStackTrace();
         }
-    }
+    }*/
+
     private void SaveNomCompletAgent() {
         try{
             String dateFinEvaluation = Tools.getDateString_MMddyyyy_HHmmss();
