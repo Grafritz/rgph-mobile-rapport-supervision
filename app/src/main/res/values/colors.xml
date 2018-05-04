@@ -67,5 +67,6 @@
     <color name="button_pressed_grisEnd">#BABABA</color>
 
     <color name="blue_pressed">#ff0099cc</color>
+    <color name="colorGrayPlus">#E7E9E9</color>
 
 </resources>

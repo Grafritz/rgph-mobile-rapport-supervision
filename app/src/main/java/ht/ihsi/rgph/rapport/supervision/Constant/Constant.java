@@ -44,10 +44,14 @@ import android.view.Gravity;
 
     //endregion
 
+    int COMPTE_ASTIC = 1;
+    int COMPTE_SUPERVISEUR = 2;
+    int COMPTE_AGENT = 3;
+
     //region MODULE NAME
     int LIST_MODULE_EXERCICES = 1;
     int LIST_COMPTE_UTILISATEUR = 2;
-    int LIST_TYPE_EXERCICE = 3;
+    int LIST_RESULTAT_RAPPORT_AGENT = 3;
     //endregion
     int EXERCICE_ENTRAINEMENT_1 = 1;
     int EXERCICE_FORMATIVE_2 = 2;

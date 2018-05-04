@@ -130,6 +130,11 @@
     <string name="label_ConsulterRapport">Consulter Rapport</string>
     <string name="label_NomCompletAgent">Nom Complet Agent</string>
     <string name="msg_NomComplet_Obligatoire">Le Nom complet de l\'agent est Obligatoire</string>
+    <string name="label_CommentairesGeneraux">Commentaires généraux sur le comportement de l\'agent recenseur</string>
+    <string name="label_HuntCommentairesGeneraux">Commentaires Généraux</string>
+    <string name="msg_CommentairesGeneraux_Obligatoire">Commentaires Généraux Obligatoire</string>
+    <string name="label_Connecter">Connecter</string>
+    <string name="label_Liste_ResultatRapportDesAgents">Liste de Rapport des Agents</string>
 
 
 </resources>

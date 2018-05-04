@@ -1,10 +1,14 @@
 package ht.ihsi.rgph.rapport.supervision.Views.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -49,6 +53,7 @@ public class BaseActivity extends AppCompatActivity {
     public int profilId = 0;
     public String nomUtilisateur="";
     public long getPersId = 0;
+    public Dialog dialog;
 
     //region JODA TIME// Format for input
     DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/YYYY HH:mm:ss");
@@ -57,6 +62,12 @@ public class BaseActivity extends AppCompatActivity {
     public String dateString ="";// Tools.getDateString_MMddyyyy_HHmmss();
     //endregion
 
+    //region Form
+    public ScrollView scrollView2;
+    public TextView tv_GrandTitre2, tv_NomCompletAgent, tv_CommentairesGeneraux;
+    public EditText et_NomCompletAgent, et_CommentairesGeneraux;
+    public Shared_Preferences sharedPreferences = null;
+    //endregion
     @Override
     protected void onDestroy() {
        /* if (formDataMngr != null)

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapport;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Agent_Evaluation_Exercices;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Agent_Evaluation_ExercicesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.FormulaireExercices;
@@ -14,6 +15,7 @@ import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.FormulaireExercicesD
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Personnel;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
 import ht.ihsi.rgph.rapport.supervision.Mappers.ModelMapper;
+import ht.ihsi.rgph.rapport.supervision.Models.AgentRapportModel;
 import ht.ihsi.rgph.rapport.supervision.Models.Agent_Evaluation_ExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.FormulaireExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.KeyValueModel;
@@ -127,6 +129,21 @@ public class QueryRecordMngrImpl extends AbstractDatabaseManager implements Quer
         return result;
     }
 
+    @Override
+    public List<RowDataListModel> searchAllList_AgentRapport() throws ManagerException {
+        List<RowDataListModel> result = null;
+        try {
+            openReadableDb();
+            List<AgentRapport> agentRapport = daoSession.getAgentRapportDao().queryBuilder().list();
+            result = MapToRows_AR(agentRapport);
+            daoSession.clear();
+        }catch(Exception ex){
+            //Log.e(MANAGERS, "Exception <> unable to search All  searchAllList_AgentRapport: "+ex.getMessage());
+            throw  new ManagerException("<> unable to search All  searchAllList_AgentRapport ",ex);
+        }
+        return result;
+    }
+
     //endregion
 
     //region additional
@@ -179,6 +196,53 @@ public class QueryRecordMngrImpl extends AbstractDatabaseManager implements Quer
         return result;
     }
 
+    public List<RowDataListModel> MapToRows_AR(List<AgentRapport> agentRapportList) {
+        List<RowDataListModel> result = new ArrayList<>();
+        if (agentRapportList != null && agentRapportList.size() > 0) {
+            for (AgentRapport agentRapport : agentRapportList) {
+                RowDataListModel r = new RowDataListModel();
+                r.setId(agentRapport.getCodeAgent());
+                r.setTitle("<b>" + agentRapport.getNomCompletAgent() + "</b>");
+                String desc = "", desc2 = "", desc3 = "", separateur="<br />";
+                desc += "<b>Oui : </b>" + agentRapport.getScoreOui1() + " ";
+                desc += ""+ separateur +"";
+                desc += "<b>Non : </b> " + agentRapport.getScoreNon2() + "";
+                desc += ""+ separateur +"";
+                desc += "<b>Moyennement : </b> " + agentRapport.getScoreMoyennement3() + "";
+                desc += ""+ separateur +"";
+                desc += "<b>Hors Observation : </b> " + agentRapport.getScoreHorsObservation4() + "";
+                //desc += "\"+ separateur +\"";
+                //desc += "-----------------------";
+                desc2 += "<b>QUESTION 8</b>";
+                desc2 += ""+ separateur +"";
+                desc2 += "<b>Une Fois : </b>" + agentRapport.getScoreUneFois1() + " ";
+                desc2 += ""+ separateur +"";
+                desc2 += "<b>Au moins 2 Fois : </b>" + agentRapport.getScoreAuMoins2Fois2() + " ";
+                desc2 += ""+ separateur +"";
+                desc2 += "<b>Non : </b> " + agentRapport.getScoreNon3() + "";
+                //desc += "\"+ separateur +\"";
+                desc3 += "------------------------------------------------------------------------------------------------------------";
+                desc3 += ""+ separateur +"";
+                desc3 += "<b>TOTAL : </b> " + agentRapport.getScoreFinalAtteint() + "";
+                desc3 += ""+ separateur +"";
+                desc3 += "------------------------------------------------------------------------------------------------------------";
+                desc3 += ""+ separateur +"";
+                desc3 += "<b>Commentaires : </b> " + agentRapport.getCommentairesGeneraux() + "";
+
+                r.setDesc(desc);
+                r.setDesc2(desc2);
+                r.setDesc3(desc3);
+
+                r.setIsComplete(true);
+                r.setIsModuleMenu(false);
+                r.setModel(ModelMapper.MapTo(agentRapport));
+
+                result.add(r);
+            }
+        } else {
+        }
+        return result;
+    }
 
     public List<RowDataListModel> MapToRows(List<FormulaireExercices> formulaireExercicesList) {
         List<RowDataListModel> result = new ArrayList<>();

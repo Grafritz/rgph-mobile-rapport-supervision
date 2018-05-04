@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapport;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.AgentRapportDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.Agent_Evaluation_ExercicesDao;
 import ht.ihsi.rgph.rapport.supervision.Backend.DAOEntities.DaoSession;
@@ -115,12 +116,35 @@ public class CURecordMngrImpl extends AbstractDatabaseManager implements CURecor
         }
         return null;
     }
+
+    @Override
+    public AgentRapportModel updateAgentRapport(AgentRapportModel agentRapportModel) throws ManagerException {
+        if (agentRapportModel != null) {
+            openReadableDb();
+            AgentRapportDao agentRapportDao = daoSession.getAgentRapportDao();
+            AgentRapport aRap = agentRapportDao.load(agentRapportModel.getCodeAgent());
+            //Log.d(ToastUtility.TAG, " B. UPDATING / BID:"+agentRapportModel.getPersId()  );
+            if (aRap != null) {
+                aRap = ModelMapper.MapTo(agentRapportModel);
+                //aRap.setPersId(agentRapportModel.getPersId());
+                try {
+                    agentRapportDao.update(aRap);
+                    //Log.d(ToastUtility.TAG, "PERSONNEL UPDATING / BID:"+agentRapportModel.getPersId()  );
+                    daoSession.clear();
+                    return ModelMapper.MapTo(aRap);
+                } catch (Exception ex) {
+                    throw new ManagerException("Manager Exception: " + ex.getMessage());
+                }
+            }
+        }
+        return null;
+    }
     //endregion
 
     //region database managers
 
     @Override
-    public PersonnelModel savePersonnel(PersonnelModel personnelModel, String userCode) throws ManagerException {
+    public PersonnelModel savePersonnel(PersonnelModel personnelModel) throws ManagerException {
         if ( personnelModel != null ) {
             openWritableDb();
             PersonnelDao personnelDao = daoSession.getPersonnelDao();
@@ -141,20 +165,21 @@ public class CURecordMngrImpl extends AbstractDatabaseManager implements CURecor
     }
 
     @Override
-    public PersonnelModel SavePersonnel(long id, PersonnelModel personnelModel, String userCode) throws ManagerException, TextEmptyException {
+    public PersonnelModel SavePersonnel(long id, PersonnelModel personnelModel) throws ManagerException, TextEmptyException {
         try {
             if (id <= 0) {
                 Validation(personnelModel);
-                personnelModel = savePersonnel(personnelModel, userCode);
+                personnelModel = savePersonnel(personnelModel);
             } else if (id > 0) {
                 personnelModel.setPersId(id);
-                personnelModel = updatePersonnel(personnelModel, userCode);
+                personnelModel = updatePersonnel(personnelModel);
             }
         }catch (TextEmptyException ex){
             throw ex;
         }
         return personnelModel;
     }
+
     private void Validation(PersonnelModel personnelModel) throws TextEmptyException {
         if( GetPersonnelByCompteUtilisateur(personnelModel) ){
             throw new TextEmptyException("Ce Compte Utilisateur [ "+ personnelModel.getNomUtilisateur() +" ] est déjà enregistré");
@@ -230,7 +255,7 @@ public class CURecordMngrImpl extends AbstractDatabaseManager implements CURecor
     }
 
     @Override
-    public PersonnelModel updatePersonnel(PersonnelModel personnelModel, String userCode) throws ManagerException {
+    public PersonnelModel updatePersonnel(PersonnelModel personnelModel) throws ManagerException {
         if (personnelModel != null) {
             openReadableDb();
             PersonnelDao personnelDao = daoSession.getPersonnelDao();

@@ -11,6 +11,8 @@ public class RowDataListModel implements Serializable{
     private String icon;
     private String title;
     private String desc;
+    private String desc2;
+    private String desc3;
     private boolean isComplete;
     private boolean isModuleMenu;
     private boolean isEmpty;
@@ -19,13 +21,20 @@ public class RowDataListModel implements Serializable{
     private Object model;
 
     public RowDataListModel(){
-
+        this.icon="";
+        this.title="";
+        this.desc="";
+        this.desc2="";
+        this.desc3="";
+        this.isModuleMenu=false;
+        this.isComplete=true;
     }
 
     public RowDataListModel(String icon, String title, String desc){
         this.icon=icon;
         this.title=title;
         this.desc=desc;
+        //this.desc2=desc2;
         this.isModuleMenu=true;
         this.isComplete=true;
     }
@@ -52,6 +61,22 @@ public class RowDataListModel implements Serializable{
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getDesc2() {
+        return desc2;
+    }
+
+    public void setDesc2(String desc2) {
+        this.desc2 = desc2;
+    }
+
+    public String getDesc3() {
+        return desc3;
+    }
+
+    public void setDesc3(String desc3) {
+        this.desc3 = desc3;
     }
 
     public boolean isComplete() {

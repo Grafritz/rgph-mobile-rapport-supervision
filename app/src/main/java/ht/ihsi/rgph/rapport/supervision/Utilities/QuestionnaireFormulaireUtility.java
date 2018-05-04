@@ -27,9 +27,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ht.ihsi.rgph.rapport.supervision.Constant.Constant;
+import ht.ihsi.rgph.rapport.supervision.Exceptions.ManagerException;
 import ht.ihsi.rgph.rapport.supervision.Exceptions.TextEmptyException;
 import ht.ihsi.rgph.rapport.supervision.Managers.CURecordMngr;
 import ht.ihsi.rgph.rapport.supervision.Managers.FormDataMngr;
+import ht.ihsi.rgph.rapport.supervision.Models.AgentRapportModel;
 import ht.ihsi.rgph.rapport.supervision.Models.Agent_Evaluation_ExercicesModel;
 import ht.ihsi.rgph.rapport.supervision.Models.BaseModel;
 import ht.ihsi.rgph.rapport.supervision.Models.FormulaireExercicesModel;
@@ -77,15 +79,16 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
     private String qSuivant;
     public long codeAgent=0;
     public String nomCompletAgent ="";
+    public String commentairesGeneraux ="";
 
-    public double scoreFinalAtteint=0;
-    public double ScoreOui_1=0;
-    public double ScoreNon_2=0;
-    public double ScoreMoyennement_3=0;
-    public double ScoreHorsObservation_4=0;
-    public double ScoreUneFois_5=0;
-    public double ScoreAuMoins2Fois_6=0;
-    public double ScoreNon_7=0;
+    public long scoreFinalAtteint=0;
+    public long ScoreOui_1=0;
+    public long ScoreNon_2=0;
+    public long ScoreMoyennement_3=0;
+    public long ScoreHorsObservation_4=0;
+    public long ScoreUneFois_5=0;
+    public long ScoreAuMoins2Fois_6=0;
+    public long ScoreNon_7=0;
 
     public int NbChar;
 
@@ -845,16 +848,44 @@ public class QuestionnaireFormulaireUtility extends BaseModel {
             temp.setCodeReponse(codeReponse);
 
             temp.setScoreReponse(scoreReponse);
-            //temp.setReponseSaisie(reponseSaisie);
             temp.setCreatedBy(spreferences.getNomUtilisateur());
             temp.setDateCreated(Tools.getDateString_MMddyyyy_HHmmss());
             tempReponseEntreeModel.add(temp);
 
             InsertReponseEntree(cuRecordMngr, temp);
 
-        } catch (Exception ex) {
+            //Rapport Agent
+            UpdateAgentRapport(cuRecordMngr, false);
+
+        }catch (Exception ex) {
             Tools.LogCat("Exception-CheckValueBefore(): getMessage: ", ex);
             throw ex;
+        }
+    }
+
+    public void UpdateAgentRapport(CURecordMngr cuRecordMngr, boolean withComment) {
+        try{
+
+            AgentRapportModel m = new AgentRapportModel();
+            m.setCodeAgent(this.codeAgent) ;
+            if( withComment ) {
+                m.setNomCompletAgent(this.nomCompletAgent);
+                m.setCommentairesGeneraux(this.commentairesGeneraux);
+            }
+            m.setScoreFinalAtteint(""+this.scoreFinalAtteint);
+
+            m.setScoreOui1( this.ScoreOui_1 );
+            m.setScoreNon2( this.ScoreNon_2 );
+            m.setScoreMoyennement3( this.ScoreMoyennement_3 );
+            m.setScoreHorsObservation4( this.ScoreHorsObservation_4 );
+
+            m.setScoreUneFois1( this.ScoreUneFois_5 );
+            m.setScoreAuMoins2Fois2( this.ScoreAuMoins2Fois_6 );
+            m.setScoreNon3( this.ScoreNon_7 );
+
+            AgentRapportModel aRap = cuRecordMngr.updateAgentRapport(m);
+        } catch (Exception ex) {
+            Tools.LogCat("Exception-InsertReponseEntree(): ", ex);
         }
     }
 

@@ -1,5 +1,6 @@
 package ht.ihsi.rgph.rapport.supervision.Views.Activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,6 +30,7 @@ import ht.ihsi.rgph.rapport.supervision.Models.KeyValueModel;
 import ht.ihsi.rgph.rapport.supervision.Models.ReponsesModel;
 import ht.ihsi.rgph.rapport.supervision.R;
 import ht.ihsi.rgph.rapport.supervision.Utilities.QuestionnaireFormulaireUtility;
+import ht.ihsi.rgph.rapport.supervision.Utilities.Shared_Preferences;
 import ht.ihsi.rgph.rapport.supervision.Utilities.Tools;
 import ht.ihsi.rgph.rapport.supervision.Views.Adapters.RadioListAdapterKeyValue;
 import ht.ihsi.rgph.rapport.supervision.Views.Adapters.RadioListJustificationReponsesAdapter;
@@ -60,6 +64,7 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
     private Button btn_Precedent,  btn_Suivant;
     public long codeAgent=0;
     public String nomAgent="";
+
     //endregion
 
     @Override
@@ -361,7 +366,8 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
                 Goto_QuestionSuivante(QF);
             }else{
                 // Enregistrement des informations pour empecher que l'utilisateur passe a nouveau l'evaluation
-                SaveAgent_Evaluation();
+                //SaveAgent_Evaluation();
+                ShowFormulaireSaisieAgentRapport();
             }
         }catch (TextEmptyException ex) {
             Tools.AlertDialogMsg(this, ex.getMessage());
@@ -372,6 +378,105 @@ public class QuestionnaireExerciceActivity extends BaseActivity implements Seria
             ex.printStackTrace();
         }
     }
+
+    //region PopUp Agent Rapport
+    private void ShowFormulaireSaisieAgentRapport() {
+        try {
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.form_agent);
+            dialog.setCancelable(false);
+            scrollView2 = (ScrollView) dialog.findViewById(R.id.scrollView2);
+
+            tv_GrandTitre2 = (TextView) dialog.findViewById(R.id.tv_GrandTitre);
+
+            tv_NomCompletAgent = (TextView) dialog.findViewById(R.id.tv_NomCompletAgent);
+            et_NomCompletAgent = (EditText) dialog.findViewById(R.id.et_NomCompletAgent);
+            et_NomCompletAgent.setText(QF.nomCompletAgent);
+            et_NomCompletAgent.setEnabled(false);
+            et_NomCompletAgent.setVisibility(View.GONE);
+            //tv_NomCompletAgent.setVisibility(View.GONE);
+            tv_NomCompletAgent.setText(QF.nomCompletAgent);
+
+            tv_CommentairesGeneraux = (TextView) dialog.findViewById(R.id.tv_CommentairesGeneraux);
+            et_CommentairesGeneraux = (EditText) dialog.findViewById(R.id.et_CommentairesGeneraux);
+            et_CommentairesGeneraux.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if( actionId == Constant.imeActionId_EtReponse_6){
+                        Update_AgentRapport();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            //endregion
+
+            sharedPreferences = Tools.SharedPreferences(this);
+            if ( sharedPreferences != null ) {
+                //sdeCode = sharedPreferences.getSdeId();
+            }
+
+            dialog.setTitle(Html.fromHtml( getString(R.string.msg_RapportDeSupervisionDirecte)) );
+            tv_GrandTitre2.setText( getString(R.string.msg_EvaluationQuantitative) );
+
+            //region Buttons btnQuitter
+            Button btnQuitter_Bat = (Button) dialog.findViewById(R.id.btnQuitter_Bat);
+            btnQuitter_Bat.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if (dialog != null) {
+                        dialog.dismiss();
+                    }
+                }
+            });
+            btnQuitter_Bat.setVisibility(View.GONE);
+            //endregion
+
+            //region Buttons btnContinuer
+            Button btnContinuer = (Button) dialog.findViewById(R.id.btnContinuer);
+            btnContinuer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   Update_AgentRapport();
+                }
+            });
+            //endregion
+
+            dialog.show();
+
+        } catch (Exception ex) {
+            message = "Erreur :";
+            //ToastUtility.LogCat("Exception: ShowFormulaireBatiment :" + message +" / " + ex.toString());
+            Tools.AlertDialogMsg(this, message +"\n"+ ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void Update_AgentRapport() {
+        try{
+            et_CommentairesGeneraux.setError(null);
+            String etCommentairesGeneraux="" + et_CommentairesGeneraux.getText();
+
+            if (TextUtils.isEmpty(etCommentairesGeneraux)) {
+                et_CommentairesGeneraux.setError(getString(R.string.msg_CommentairesGeneraux_Obligatoire));
+            }else {
+                QF.commentairesGeneraux = etCommentairesGeneraux;
+                QF.UpdateAgentRapport(cuRecordMngr, true);
+
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+                finish();
+                // Show Repport
+            }
+        }catch (Exception ex) {
+            message = "Erreur :";
+            //ToastUtility.LogCat("Exception: ShowFormulaireBatiment :" + message +" / " + ex.toString());
+            Tools.AlertDialogMsg(this, message +"\n"+ ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    //endregion
 
     private void SaveAgent_Evaluation() {
         try{

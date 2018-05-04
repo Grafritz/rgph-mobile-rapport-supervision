@@ -93,6 +93,28 @@ public class ModelMapper {
         m.setDateCreated(entity.getDateCreated());
         return m;
     }
+
+    public static AgentRapportModel MapTo(AgentRapport entity) {
+        AgentRapportModel m = new AgentRapportModel();
+        m.setCodeAgent(entity.getCodeAgent()) ;
+        m.setNomCompletAgent(entity.getNomCompletAgent());
+        m.setCommentairesGeneraux(entity.getCommentairesGeneraux());
+        m.setScoreFinalAtteint(entity.getScoreFinalAtteint());
+
+        m.setScoreOui1(entity.getScoreOui1());
+        m.setScoreNon2(entity.getScoreNon2());
+        m.setScoreMoyennement3(entity.getScoreMoyennement3());
+        m.setScoreHorsObservation4(entity.getScoreHorsObservation4());
+
+        m.setScoreUneFois1(entity.getScoreUneFois1());
+        m.setScoreAuMoins2Fois2(entity.getScoreAuMoins2Fois2());
+        m.setScoreNon3(entity.getScoreNon3());
+
+        m.setCreatedBy(entity.getCreatedBy());
+        m.setDateCreated(entity.getDateCreated());
+        return m;
+    }
+
     public static Agent_Evaluation_ExercicesModel MapTo(Agent_Evaluation_Exercices entity) {
         Agent_Evaluation_ExercicesModel m = new Agent_Evaluation_ExercicesModel();
         m.setCodeExercice(entity.getCodeExercice()) ;

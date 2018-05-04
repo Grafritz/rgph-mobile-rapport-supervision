@@ -39,7 +39,7 @@ import ht.ihsi.rgph.rapport.supervision.Views.decorator.SimpleDividerItemDecorat
 /**
  * Created by JFDuverseau on 31/8/2017.
  */
-public class DisplayListActivity extends BaseActivity {
+public class DisplayListActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "DisplayListActivity";
     private List<RowDataListModel> targetList=new ArrayList<RowDataListModel>();
@@ -62,6 +62,7 @@ public class DisplayListActivity extends BaseActivity {
     private RowDataListModel rowDataListModel = null;
     public Dialog dialog;
     public KeyValueModel keyValueModel=null;
+    //public FloatingActionButton fab_AddElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class DisplayListActivity extends BaseActivity {
             StringHeaderTwo = intent.getStringExtra(Constant.PARAM_SOUS_TITRE_HEADER_TWO).toString();
             listType = listTypeUse = Integer.valueOf(intent.getStringExtra(Constant.PARAM_TYPE_FORMULAIRE)).intValue();
 
-            if( listType == Constant.LIST_TYPE_EXERCICE ){
+            if( listType == Constant.LIST_RESULTAT_RAPPORT_AGENT){
                 //keyValueModel = (KeyValueModel) rowDataListModel.getModel();
 
             }else  if( listType == Constant.LIST_MODULE_EXERCICES ){
@@ -112,6 +113,9 @@ public class DisplayListActivity extends BaseActivity {
 
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            //fab_AddElement = (FloatingActionButton) findViewById(R.id.fab_AddElement);
+            //fab_AddElement.setOnClickListener(this);
 
             createSearchView(); //create the search view
 
@@ -222,7 +226,7 @@ public class DisplayListActivity extends BaseActivity {
                             new AsynDisplayDataListTask().execute();
                         }
                     }*/
-                }else if (listType == Constant.LIST_TYPE_EXERCICE) {
+                }else if (listType == Constant.LIST_RESULTAT_RAPPORT_AGENT) {
 
                 }
             }
@@ -300,7 +304,7 @@ public class DisplayListActivity extends BaseActivity {
                         Tools.AlertDialogMsg(this, message);
                     }*/
                 }
-            }else if (listType == Constant.LIST_TYPE_EXERCICE) {
+            }else if (listType == Constant.LIST_RESULTAT_RAPPORT_AGENT) {
                 if( row != null ) {
                     KeyValueModel keyValueModel = (KeyValueModel) row.getModel();
                     intent = new Intent(this, DisplayListActivity.class);
@@ -312,6 +316,11 @@ public class DisplayListActivity extends BaseActivity {
                     intent.putExtra(Constant.PARAM_ID, ""+keyValueModel.getKey());
                     startActivity(intent);
                 }
+            }else  if( listType == Constant.LIST_COMPTE_UTILISATEUR){
+                intent = new Intent(this, FormulaireUtilisateur.class);
+                intent.putExtra(Constant.PARAM_MODEL, row);
+                intent.putExtra(Constant.PARAM_ID, row.getId());
+                startActivity(intent);
             }
         }catch (TextEmptyException ex) {
             Tools.AlertDialogMsg(this, ex.getMessage());
@@ -338,6 +347,27 @@ public class DisplayListActivity extends BaseActivity {
         } catch (Exception ex) {
             Tools.LogCat("Exception-getAgentCanGoToEvaluation():  ", ex);
             throw ex;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        try{
+            switch (v.getId()) {
+                /*case R.id.fab_AddElement:
+                   if( listType == Constant.LIST_COMPTE_UTILISATEUR){
+                        intent = new Intent(this, FormulaireUtilisateur.class);
+                        intent.putExtra(Constant.PARAM_TYPE_FORMULAIRE, "");
+                        intent.putExtra(Constant.PARAM_ID, 0);
+                        startActivity(intent);
+                    }
+                    break;*/
+                default:
+            }
+        }catch (Exception ex) {
+            Tools.ToastMessage(getApplicationContext(), " ERREUR : "+ ex.toString());
+            Tools.LogCat("Exception-onClick(): getMessage: ", ex);
+            ex.printStackTrace();
         }
     }
     //endregion
@@ -367,8 +397,11 @@ public class DisplayListActivity extends BaseActivity {
                     rowDataList = queryRecordMngr.searchList_FormulaireExercice_ByType(id);
                     message = "Pas d'exercice dans la Base de données.";
 
-                }else if (listType == Constant.LIST_TYPE_EXERCICE) {
-                    rowDataList = queryRecordMngr.searchList_TypeExercice();
+                }else if (listType == Constant.LIST_RESULTAT_RAPPORT_AGENT) {
+                    rowDataList = queryRecordMngr.searchAllList_AgentRapport();
+
+                }else if (listType == Constant.LIST_COMPTE_UTILISATEUR) {
+                    targetList.addAll(queryRecordMngr.searchListProfilUser(SPref));
                 }
                 if( rowDataList != null ){
                     targetList.addAll(rowDataList);
@@ -411,8 +444,8 @@ public class DisplayListActivity extends BaseActivity {
         if (listType == Constant.LIST_MODULE_EXERCICES) {
             list_header_1.setText(title + " [" + nbrsave + "]");
 
-        //} else if(listType == Constant.LIST_MODULE_COMPTE_UTILISATEUR_16){
-        //    list_header_1.setText(getString(R.string.label_Kont_Itilizate) + " "+ moduleStatutString + " [" + nbrsave + "]");
+        } else if(listType == Constant.LIST_COMPTE_UTILISATEUR){
+            //list_header_1.setText(getString(R.string.label_Kont_Itilizate) + " "+ moduleStatutString + " [" + nbrsave + "]");
         }
     }
     //endregion

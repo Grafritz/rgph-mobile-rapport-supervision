@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -103,6 +105,21 @@ public class Tools {
         Log.w(TAG, ex);
     }
     //
+
+    public static void SetErrorField(Context context, EditText editText, String message) {
+        editText.setError(message);
+        editText.requestFocus();
+        LogCat(message);
+        ToastMessage(context, message);
+        AlertDialogMsg(context, message);
+    }
+    public static void SetErrorField(Context context, Spinner spinner, String message) {
+        //spinner.setError(message);
+        spinner.requestFocus();
+        LogCat(message);
+        ToastMessage(context, message);
+        AlertDialogMsg(context, message);
+    }
 
     public static void AlertDialogMsg(Context context, String msg){
         AlertDialog.Builder aBuilder = new AlertDialog.Builder(context);

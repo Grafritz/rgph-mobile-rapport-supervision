@@ -22,7 +22,9 @@ import ht.ihsi.rgph.rapport.supervision.Utilities.Shared_Preferences;
 
     List<RowDataListModel> searchList_FormulaireExercice() throws ManagerException;
     List<RowDataListModel> searchList_FormulaireExercice_ByType(long typeExercice) throws ManagerException;
-   List<RowDataListModel> searchList_TypeExercice() throws ManagerException;
+    List<RowDataListModel> searchList_TypeExercice() throws ManagerException;
+
+    List<RowDataListModel> searchAllList_AgentRapport() throws ManagerException;
 
     Agent_Evaluation_ExercicesModel getAgent_Evaluation_Exercices_ByIdAgent(long idFormExercice, long idPersonnel) throws ManagerException;
 

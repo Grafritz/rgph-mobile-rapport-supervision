@@ -39,13 +39,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public Dialog dialog;
     private QuestionnaireFormulaireUtility QF;
 
-    //region Form
-    ScrollView scrollView2;
-    TextView tv_GrandTitre2, tv_SousTitre2, tv_NomCompletAgent;
-    EditText et_NomCompletAgent;
-    Button Btn_GetGPS, btnQuitter_Bat;
-    Shared_Preferences sharedPreferences = null;
-    //endregion
     //endregion
 
     @Override
@@ -163,10 +156,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     CheckPrefIsUseConnected(true);
                     if (!cancel) {
                         intent = new Intent(this, DisplayListActivity.class);
-                        intent.putExtra(Constant.PARAM_ACTION_BAR_TITLE, ""+getString(R.string.label_TypeExercices));
-                        intent.putExtra(Constant.PARAM_GRAND_TITRE_HEADER_ONE, "");
-                        intent.putExtra(Constant.PARAM_SOUS_TITRE_HEADER_TWO, "");
-                        intent.putExtra(Constant.PARAM_TYPE_FORMULAIRE, "" + Constant.LIST_TYPE_EXERCICE);
+                        intent.putExtra(Constant.PARAM_ACTION_BAR_TITLE, ""+getString(R.string.msg_RapportDeSupervisionDirecte) );
+                        intent.putExtra(Constant.PARAM_GRAND_TITRE_HEADER_ONE,  "" + getString(R.string.msg_RapportDeSupervisionDirecte) );
+                        intent.putExtra(Constant.PARAM_SOUS_TITRE_HEADER_TWO, "" + getString(R.string.label_Liste_ResultatRapportDesAgents) );
+                        intent.putExtra(Constant.PARAM_TYPE_FORMULAIRE, "" + Constant.LIST_RESULTAT_RAPPORT_AGENT);
                         intent.putExtra(Constant.PARAM_MODULE_STATUT, "" );
                         intent.putExtra(Constant.PARAM_ID, "" );
                         startActivity(intent);
@@ -198,7 +191,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //endregion
 
 
-    //region PopUp FICHE BATIMENT
+    //region PopUp Agent Rapport
     private void ShowFormulaireSaisieNomComplet() {
         try {
             dialog = new Dialog(this);
@@ -222,6 +215,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     return false;
                 }
             });
+            tv_CommentairesGeneraux = (TextView) dialog.findViewById(R.id.tv_CommentairesGeneraux);
+            tv_CommentairesGeneraux.setVisibility(View.GONE);
+            et_CommentairesGeneraux = (EditText) dialog.findViewById(R.id.et_CommentairesGeneraux);
+            et_CommentairesGeneraux.setVisibility(View.GONE);
             //endregion
 
             sharedPreferences = Tools.SharedPreferences(this);
@@ -261,10 +258,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } catch (Exception ex) {
             message = "Erreur :";
             //ToastUtility.LogCat("Exception: ShowFormulaireBatiment :" + message +" / " + ex.toString());
-            Tools.AlertDialogMsg(this, message +"\n"+ ex.getMessage());
+            Tools.AlertDialogMsg(this, message + "\n" + ex.getMessage());
             ex.printStackTrace();
         }
     }
+    //endregion
 
     private void SaveNomCompletAgent() {
         try {

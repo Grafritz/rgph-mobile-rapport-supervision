@@ -15,9 +15,9 @@ import ht.ihsi.rgph.rapport.supervision.Models.ReponseEntreeModel;
 public interface CURecordMngr {
 
 
-    PersonnelModel savePersonnel(PersonnelModel personnelModel, String userCode) throws ManagerException;
+    PersonnelModel savePersonnel(PersonnelModel personnelModel) throws ManagerException;
 
-    PersonnelModel SavePersonnel(long id, PersonnelModel personnelModel, String userCode) throws ManagerException, TextEmptyException;
+    PersonnelModel SavePersonnel(long id, PersonnelModel personnelModel) throws ManagerException, TextEmptyException;
     /**
      * Save a new entity
      *
@@ -27,7 +27,7 @@ public interface CURecordMngr {
      */
     <T> T saveEntity(T entite) throws ManagerException;
 
-    PersonnelModel updatePersonnel(PersonnelModel personnelModel, String userCode) throws ManagerException;
+    PersonnelModel updatePersonnel(PersonnelModel personnelModel) throws ManagerException;
 
     PersonnelModel updateAllPersonnel(long persId, String userCode) throws ManagerException;
     /**
@@ -46,6 +46,8 @@ public interface CURecordMngr {
     Agent_Evaluation_ExercicesModel InsertAgent_Evaluation_Exercices(Agent_Evaluation_ExercicesModel agent_evaluation_exercicesModel) throws ManagerException;
 
     AgentRapportModel InsertAgentRapport(AgentRapportModel agentRapport) throws ManagerException;
+
+    AgentRapportModel updateAgentRapport(AgentRapportModel agentRapportModel) throws ManagerException;
 
 
 }
